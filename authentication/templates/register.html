@@ -8,7 +8,7 @@
 
 {% block 'body' %}
 <div class="box">
-  <form>
+  <form action="{% url 'register' %}" method="POST">{% csrf_token %}
     <h1 class="title font-gradient border-bottom-gradient">INSCREVA-SE</h1>
     <br />
     <span class="span-description">Nome de usuário:</span>
