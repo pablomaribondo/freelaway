@@ -47,4 +47,4 @@ def register(request):
 
 
 def login(request):
-    return HttpResponse('Login')
+    return render(request, 'login.html')
