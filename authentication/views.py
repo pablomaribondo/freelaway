@@ -4,11 +4,13 @@ from django.contrib.auth.models import User
 from django.contrib.messages import constants
 
 
-
 def register(request):
     register_url = '/auth/register'
 
     if request.method == "GET":
+        if request.user.is_authenticated:
+            return redirect('/')
+
         return render(request, 'register.html')
     elif request.method == "POST":
         username = request.POST.get('username')
@@ -48,6 +50,9 @@ def register(request):
 
 def login(request):
     if request.method == "GET":
+        if request.user.is_authenticated:
+            return redirect('/')
+
         return render(request, 'login.html')
     elif request.method == "POST":
         username = request.POST.get('username')
