@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.contrib import auth, messages
 from django.contrib.auth.models import User
-from django.contrib import messages
 from django.contrib.messages import constants
+
 
 
 def register(request):
@@ -52,3 +52,12 @@ def login(request):
     elif request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
+
+        user = auth.authenticate(username=username, password=password)
+        if not user:
+            messages.add_message(request, constants.ERROR,
+                                 'Username ou senha inválidos')
+            return redirect('/auth/login')
+        else:
+            auth.login(request, user)
+            return redirect('/')
