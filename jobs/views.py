@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def find_jobs(request):
+    return render(request, 'find_jobs.html')
