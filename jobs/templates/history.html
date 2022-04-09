@@ -16,7 +16,9 @@
             {% if job.status == 'AA' %}
                 <span class="badge badge-info">Aguardando aprovação</span>
             {% elif job.status == 'C' %}
-                <span class="badge badge-primary">Em criação</span>
+                <button class="badge badge-primary"
+                        data-toggle="modal"
+                        data-target="#modal-job-{{ job.id }}">Em criação</button>
             {% else %}
                 <span class="badge badge-success">Finalizado</span>
             {% endif %}

@@ -73,5 +73,10 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% for job in jobs %}
+            {% block history_modal %}
+                {% include 'history_modal.html' %}
+            {% endblock history_modal %}
+        {% endfor %}
     </div>
 {% endblock body %}

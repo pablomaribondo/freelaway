@@ -37,3 +37,11 @@
   background-color: #222 !important;
   color: white !important;
 }
+
+.title-small {
+  font-size: 30px !important;
+}
+
+.divider {
+  border-color: yellow;
+}

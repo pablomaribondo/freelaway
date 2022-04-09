@@ -1,0 +1,43 @@
+{% block history_modal %}
+    {% if job.status == "C" %}
+        <div class="modal fade"
+             id="modal-job-{{ job.id }}"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content modal-background">
+                    <div class="modal-header">
+                        <h5 class="modal-title title title-small" id="exampleModalLabel">JOB:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="title-job">{{ job.title }}</h4>
+                        <br />
+                        <h6 class="title-body">Status:</h6>
+                        {% if job.status == 'AA' %}
+                            <span class="badge badge-info">Aguardando aprovação</span>
+                        {% elif job.status == 'C' %}
+                            <a class="badge badge-primary">Em criação</a>
+                        {% else %}
+                            <span class="badge badge-success">Finalizado</span>
+                        {% endif %}
+                        <h6 class="title-body">Prazo máximo para entrega:</h6>
+                        <p>
+                            {{ job.deadline }}
+                        </p>
+                        <hr class="divider" />
+                        <form>
+                            <input type="file" class="form-control" placeholder="Enviar arquivos" />
+                            <br />
+                            <input type="submit" value="Enviar" class="btn btn-success btn-lg" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock history_modal %}
