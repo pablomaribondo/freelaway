@@ -16,6 +16,17 @@
   background-color: #444;
 }
 
+.nav-columns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-group {
+  display: flex;
+}
+
 .modal-background {
   background-color: #333;
 }
