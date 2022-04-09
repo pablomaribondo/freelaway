@@ -4,8 +4,10 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import constants
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='/auth/login')
 def find_jobs(request):
     if request.method == "GET":
         min_price = request.GET.get('min_price')
@@ -43,6 +45,7 @@ def find_jobs(request):
         return render(request, 'find_jobs.html', {'jobs': jobs})
 
 
+@login_required(login_url='/auth/login')
 def accept_job(request, id):
     job = Job.objects.get(id=id)
     job.professional = request.user
@@ -52,6 +55,7 @@ def accept_job(request, id):
     return redirect('/jobs/find_jobs')
 
 
+@login_required(login_url='/auth/login')
 def profile(request):
     if request.method == "GET":
         jobs = Job.objects.filter(professional=request.user)
@@ -89,6 +93,7 @@ def profile(request):
         return redirect(profile_url)
 
 
+@login_required(login_url='/auth/login')
 def send_project(request):
     file = request.FILES.get('file')
     id_job = request.POST.get('id')
