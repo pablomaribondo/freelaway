@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Job
 from datetime import datetime
 
@@ -38,3 +38,12 @@ def find_jobs(request):
             jobs = Job.objects.filter(reserved=False)
 
         return render(request, 'find_jobs.html', {'jobs': jobs})
+
+
+def accept_job(request, id):
+    job = Job.objects.get(id=id)
+    job.professional = request.user
+    job.reserved = True
+    job.save()
+
+    return redirect('/jobs/find_jobs')
