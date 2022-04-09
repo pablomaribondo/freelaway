@@ -54,7 +54,8 @@ def accept_job(request, id):
 
 def profile(request):
     if request.method == "GET":
-        return render(request, 'profile.html')
+        jobs = Job.objects.filter(professional=request.user)
+        return render(request, 'profile.html', {'jobs': jobs})
     elif request.method == "POST":
         username = request.POST.get('username')
         email = request.POST.get('email')

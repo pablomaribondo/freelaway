@@ -66,15 +66,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">
-                        <img width="100px" src="/media/references/dog.jpeg" alt="reference" />
-                    </th>
-                    <td>a</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>x</td>
-                </tr>
+                {% for job in jobs %}
+                    {% block history %}
+                        {% include 'history.html' %}
+                    {% endblock history %}
+                {% endfor %}
             </tbody>
         </table>
     </div>

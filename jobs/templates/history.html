@@ -1,0 +1,25 @@
+{% block history %}
+    <tr>
+        <th scope="row">
+            <img width="100px" src="{{ job.references.all.0 }}" alt="reference"/>
+        </th>
+        <td>{{ job.title }}</td>
+        <td>
+            {% if job.category == 'D' %}
+                Design
+            {% else %}
+                Edição de vídeo
+            {% endif %}
+        </td>
+        <td>{{ job.description }}</td>
+        <td>
+            {% if job.status == 'AA' %}
+                <span class="badge badge-info">Aguardando aprovação</span>
+            {% elif job.status == 'C' %}
+                <span class="badge badge-primary">Em criação</span>
+            {% else %}
+                <span class="badge badge-success">Finalizado</span>
+            {% endif %}
+        </td>
+    </tr>
+{% endblock history %}
