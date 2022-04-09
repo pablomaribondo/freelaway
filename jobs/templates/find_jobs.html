@@ -43,44 +43,52 @@
   <br />
   <h2 class="title">JOB’S EM ABERTO:</h2>
   <div class="row justify-content-around">
-    <div class="col-6 row-card">
-      <div class="card-job">
-        <div class="header-job">
-          <h4 class="title-job">Criação de thumb</h4>
-        </div>
-        <div class="body-job">
-          <p class="title-body">Descrição:</p>
-          <div style="width: 70%">
-            <p>What is Lorem Ipsum?Lorem Ipsum is simply
-              dummy text of the printing and
-              typesettingindustry. Lorem Ipsum has been</p>
+
+    {% for job in jobs %}
+      <div class="col-6 row-card">
+        <div class="card-job">
+          <div class="header-job">
+            <h4 class="title-job">{{job.title}}</h4>
           </div>
-
-          <div class="row">
-            <div class="col-4">
-              <p class="title-body">Preço:</p>
-              <p>R$ 25,00</p>
+          <div class="body-job">
+            <p class="title-body">Descrição:</p>
+            <div style="width: 70%">
+              <p>{{job.description}}</p>
             </div>
 
-            <div class="col-4">
-              <p class="title-body">Prazo:</p>
-              <p>22 de Abril</p>
+            <div class="row">
+              <div class="col-4">
+                <p class="title-body">Preço:</p>
+                <p>R$ {{job.price}}</p>
+              </div>
+
+              <div class="col-4">
+                <p class="title-body">Prazo:</p>
+                <p>{{job.deadline}}</p>
+              </div>
+
+              <div class="col-4">
+                <p class="title-body">Categoria:</p>
+                <p>
+                  {% if job.category == 'D' %}
+                    Design
+                  {% else %}
+                    Edição de Vídeo
+                  {% endif %}
+                </p>
+              </div>
+
             </div>
 
-            <div class="col-4">
-              <p class="title-body">Categoria:</p>
-              <p>Design</p>
-            </div>
+            <button class="btn btn-success">Ver detalhes</button>
+            <br />
+            <br />
 
           </div>
-
-          <button class="btn btn-success">Ver detalhes</button>
-          <br />
-          <br />
-
         </div>
       </div>
-    </div>
+    {% endfor %}
+
   </div>
 </div>
 
