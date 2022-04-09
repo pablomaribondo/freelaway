@@ -65,7 +65,7 @@ def login(request):
             return redirect('/auth/login')
         else:
             auth.login(request, user)
-            return redirect('/')
+            return redirect('/jobs/find_jobs')
 
 
 def logout(request):
