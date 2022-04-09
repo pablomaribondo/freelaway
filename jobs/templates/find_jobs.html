@@ -15,7 +15,7 @@
   <div class="row">
 
     <div class="col-sm">
-      <form action="/teste" method="POST">
+      <form action="{% url 'find_jobs' %}" method="GET">{% csrf_token %}
         <input type="text" class="form-control" placeholder="Preço mínimo" name="min_price" />
         <br />
         <input type="text" class="form-control" placeholder="Preço máximo" name="max_price" />
@@ -28,7 +28,7 @@
     </div>
 
     <div class="col-sm">
-      <select class="form-control" name="categoria">
+      <select class="form-control" name="category">
         <option value="D">Design</option>
         <option value="EV">Edição de vídeo</option>
       </select>
