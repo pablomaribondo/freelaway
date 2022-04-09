@@ -1,0 +1,39 @@
+.background {
+  background-color: #222;
+  color: white;
+}
+
+.border-gradient {
+  border: 1px solid transparent;
+  border-image: linear-gradient(
+    90deg,
+    rgba(231, 71, 220, 1) 0%,
+    rgba(255, 207, 0, 1) 100%
+  );
+  border-image-slice: 1;
+}
+
+.title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 52px;
+  display: inline;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 207, 0, 1) 0%,
+    rgba(231, 71, 220, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding-bottom: 10px;
+}
+
+.profile-content {
+  width: 60%;
+}
+
+.profile-table {
+  background-color: #222 !important;
+  color: white !important;
+}

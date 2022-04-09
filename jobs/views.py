@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Job
 from datetime import datetime
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.messages import constants
 
 
 def find_jobs(request):
@@ -47,3 +50,39 @@ def accept_job(request, id):
     job.save()
 
     return redirect('/jobs/find_jobs')
+
+
+def profile(request):
+    if request.method == "GET":
+        return render(request, 'profile.html')
+    elif request.method == "POST":
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+
+        profile_url = '/jobs/profile'
+
+        user = User.objects.filter(
+            username=username).exclude(id=request.user.id)
+
+        if user.exists():
+            messages.add_message(request, constants.ERROR,
+                                 'Já existe um usuário com esse Username')
+            return redirect(profile_url)
+
+        user = User.objects.filter(email=email).exclude(id=request.user.id)
+
+        if user.exists():
+            messages.add_message(request, constants.ERROR,
+                                 'Já existe um usuário com esse E-mail')
+            return redirect(profile_url)
+
+        request.user.username = username
+        request.user.email = email
+        request.user.first_name = first_name
+        request.user.last_name = last_name
+        request.user.save()
+        messages.add_message(request, constants.SUCCESS,
+                             'Dados alterados com sucesso')
+        return redirect(profile_url)
