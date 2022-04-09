@@ -45,48 +45,7 @@
   <div class="row justify-content-around">
 
     {% for job in jobs %}
-      <div class="col-6 row-card">
-        <div class="card-job">
-          <div class="header-job">
-            <h4 class="title-job">{{job.title}}</h4>
-          </div>
-          <div class="body-job">
-            <p class="title-body">Descrição:</p>
-            <div style="width: 70%">
-              <p>{{job.description}}</p>
-            </div>
-
-            <div class="row">
-              <div class="col-4">
-                <p class="title-body">Preço:</p>
-                <p>R$ {{job.price}}</p>
-              </div>
-
-              <div class="col-4">
-                <p class="title-body">Prazo:</p>
-                <p>{{job.deadline}}</p>
-              </div>
-
-              <div class="col-4">
-                <p class="title-body">Categoria:</p>
-                <p>
-                  {% if job.category == 'D' %}
-                    Design
-                  {% else %}
-                    Edição de Vídeo
-                  {% endif %}
-                </p>
-              </div>
-
-            </div>
-
-            <button class="btn btn-success">Ver detalhes</button>
-            <br />
-            <br />
-
-          </div>
-        </div>
-      </div>
+      {% block 'card' %} {% include 'card.html' %} {% endblock %}
     {% endfor %}
 
   </div>
