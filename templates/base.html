@@ -32,7 +32,11 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Encontrar job's</a>
+                            {% if request.path == "/jobs/find_jobs/" %}
+                                <a class="nav-link" href="{% url 'profile' %}">Perfil</a>
+                            {% else %}
+                                <a class="nav-link" href="{% url 'find_jobs' %}">Encontrar job's</a>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>
