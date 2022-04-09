@@ -19,7 +19,7 @@
                             Preço:
                         </p>
                         <p>
-                            R$ {{ job.price }}
+                            R$ {{ job.price|floatformat:2 }}
                         </p>
                     </div>
                     <div class="col-4">
@@ -27,7 +27,7 @@
                             Prazo:
                         </p>
                         <p>
-                            {{ job.deadline }}
+                            {{ job.deadline|date:"d/m/y - H:i" }}
                         </p>
                     </div>
                     <div class="col-4">
