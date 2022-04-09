@@ -29,6 +29,7 @@ class Job(models.Model):
     reserved = models.BooleanField(default=False)
     status = models.CharField(
         max_length=2, choices=status_choices, default='C')
+    final_file = models.FileField(null=True)
 
     def __str__(self) -> str:
         return self.title

@@ -30,8 +30,15 @@
                             {{ job.deadline }}
                         </p>
                         <hr class="divider" />
-                        <form>
-                            <input type="file" class="form-control" placeholder="Enviar arquivos" />
+                        <form action="{% url 'send_project' %}"
+                              method="post"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file"
+                                   class="form-control"
+                                   placeholder="Enviar arquivos"
+                                   name="file"/>
+                            <input type="hidden" value="{{ job.id }}" name="id" />
                             <br />
                             <input type="submit" value="Enviar" class="btn btn-success btn-lg" />
                         </form>

@@ -87,3 +87,15 @@ def profile(request):
         messages.add_message(request, constants.SUCCESS,
                              'Dados alterados com sucesso')
         return redirect(profile_url)
+
+
+def send_project(request):
+    file = request.FILES.get('file')
+    id_job = request.POST.get('id')
+
+    job = Job.objects.get(id=id_job)
+
+    job.final_file = file
+    job.status = 'AA'
+    job.save()
+    return redirect('/jobs/profile')
