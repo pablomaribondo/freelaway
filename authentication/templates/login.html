@@ -1,40 +1,27 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% load static %}
-
-{% block 'head' %}
-<link rel="stylesheet" href="{% static 'authentication/css/register.css' %}">
-{% endblock %}
-
-{% block 'body' %}
-<div class="box">
-  <form action="{% url 'login' %}" method="POST">{% csrf_token %}
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert {{message.tags}}">
-          {{message}}
-        </div>
-      {% endfor %}
-    {% endif %}
-
-    <h1 class="title font-gradient border-bottom-gradient">LOGAR</h1>
-    
-    <br>
-    
-    <span class="span-description">Nome de usuário:</span>
-    <input type="text" class="form-control input-register" name="username">
-    
-    <br>
-    
-    <span class="span-description">Senha:</span>
-    <input type="password" class="form-control input-register" name="password">
-
-    <a href="{% url 'password_reset' %}">Esqueci minha senha</a>
-    
-    <br>
-    
-    <input type="submit" value="LOGAR" class="btn btn-success btn-lg">
-    <a href="{% url 'register' %}" class="btn btn-primary btn-lg">CADASTRO</a>
-  </form>
-</div>
-{% endblock %}
+{% block head %}
+    <link rel="stylesheet"
+          href="{% static 'authentication/css/register.css' %}"/>
+{% endblock head %}
+{% block body %}
+    <div class="box">
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}<div class="alert {{ message.tags }}">{{ message }}</div>{% endfor %}
+            {% endif %}
+            <h1 class="title font-gradient border-bottom-gradient">LOGAR</h1>
+            <br />
+            <span class="span-description">Nome de usuário:</span>
+            <input type="text" class="form-control input-register" name="username" />
+            <br />
+            <span class="span-description">Senha:</span>
+            <input type="password" class="form-control input-register" name="password" />
+            <a href="{% url 'password_reset' %}">Esqueci minha senha</a>
+            <br />
+            <input type="submit" value="LOGAR" class="btn btn-success btn-lg" />
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg">CADASTRO</a>
+        </form>
+    </div>
+{% endblock body %}

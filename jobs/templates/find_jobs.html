@@ -1,54 +1,57 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
-
-{% block 'head' %}
-
-<link rel="stylesheet" href="{% static 'jobs/css/find_jobs.css' %}">
-
-{% endblock %}
-
-{% block 'body' %}
-
-<div class="container">
-  <br />
-  <br />
-  <div class="row">
-
-    <div class="col-sm">
-      <form action="{% url 'find_jobs' %}" method="GET">{% csrf_token %}
-        <input type="text" class="form-control" placeholder="Preço mínimo" name="min_price" />
+{% block head %}
+    <link rel="stylesheet" href="{% static 'jobs/css/find_jobs.css' %}" />
+{% endblock head %}
+{% block body %}
+    <div class="container">
         <br />
-        <input type="text" class="form-control" placeholder="Preço máximo" name="max_price" />
+        <br />
+        <div class="row">
+            <div class="col-sm">
+                <form action="{% url 'find_jobs' %}" method="get">
+                    {% csrf_token %}
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Preço mínimo"
+                           name="min_price"/>
+                    <br />
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Preço máximo"
+                           name="max_price"/>
+                </div>
+                <div class="col-sm">
+                    <input type="date" class="form-control" name="min_deadline" />
+                    <br />
+                    <input type="date" class="form-control" name="max_deadline" />
+                </div>
+                <div class="col-sm">
+                    <select class="form-control" name="category">
+                        <option value="D">
+                            Design
+                        </option>
+                        <option value="EV">
+                            Edição de vídeo
+                        </option>
+                    </select>
+                    <br />
+                    <input type="submit" class="btn btn-success btn-lg" value="FILTRAR" />
+                </form>
+            </div>
+        </div>
+        <br />
+        <br />
+        <h2 class="title">JOB’S EM ABERTO:</h2>
+        <div class="row justify-content-around">
+            {% for job in jobs %}
+                {% block card %}
+                    {% include 'card.html' %}
+                {% endblock card %}
+                {% block modal %}
+                    {% include 'modal.html' %}
+                {% endblock modal %}
+            {% endfor %}
+        </div>
     </div>
-
-    <div class="col-sm">
-      <input type="date" class="form-control" name="min_deadline" />
-      <br />
-      <input type="date" class="form-control" name="max_deadline" />
-    </div>
-
-    <div class="col-sm">
-      <select class="form-control" name="category">
-        <option value="D">Design</option>
-        <option value="EV">Edição de vídeo</option>
-      </select>
-      <br />
-      <input type="submit" class="btn btn-success btn-lg" value="FILTRAR" />
-      </form>
-    </div>
-
-
-  </div>
-  <br />
-  <br />
-  <h2 class="title">JOB’S EM ABERTO:</h2>
-  <div class="row justify-content-around">
-
-    {% for job in jobs %}
-      {% block 'card' %} {% include 'card.html' %} {% endblock %}
-    {% endfor %}
-
-  </div>
-</div>
-
-{% endblock %}
+{% endblock body %}
