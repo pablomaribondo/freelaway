@@ -28,7 +28,7 @@ class Job(models.Model):
         User, on_delete=models.DO_NOTHING, null=True, blank=True)
     reserved = models.BooleanField(default=False)
     status = models.CharField(
-        max_length=2, choices=status_choices, default='AA')
+        max_length=2, choices=status_choices, default='C')
 
     def __str__(self) -> str:
         return self.title
